@@ -16,8 +16,7 @@
     </div>
     <!-- 快捷 -->
     <div class="shortcut">
-
-      <div class="item">
+      <div class="item" @click="getPersonalFM">
         <div class="ico"></div>
         <span class="tit">私人FM</span>
       </div>
@@ -47,12 +46,29 @@
           <p>{{item.name}}</p>
         </div>
       </div>
+    </div>
 
+    <div class="recommendSongList">
+      <div class="head">
+        <h3 class="tit">推荐电台</h3>
+      </div>
+      <div class="body">
+        <div class="item" v-for="(item,index) in DJprogramList" :key="index">
+          <img class="pic" v-lazy="item.picUrl" alt="">
+          <p>{{item.name}}</p>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 <script>
-import { bannerApi, personalizedApi, newsongApi } from "@/api";
+import {
+  bannerApi,
+  personalizedApi,
+  newsongApi,
+  personal_fmApi,
+  djprogramApi
+} from "@/api";
 
 export default {
   name: "",
@@ -62,7 +78,9 @@ export default {
       // banner
       bannerList: [],
       // 推荐歌单
-      recommendSongList: []
+      recommendSongList: [],
+      // 电台
+      DJprogramList: []
     };
   },
 
@@ -72,6 +90,7 @@ export default {
     this.getBanner();
     this.getPersonalized();
     this.getNewSong();
+    this.getDJprogram();
   },
   //计算
   computed: {},
@@ -88,12 +107,23 @@ export default {
     // 获取推荐歌单
     getPersonalized() {
       personalizedApi().then(data => {
-        this.recommendSongList = data.result.slice(0,6);
+        this.recommendSongList = data.result.slice(0, 6);
       });
     },
+    // 获取新歌
     getNewSong() {
       newsongApi().then(data => {
         // this.newSongList=data.
+      });
+    },
+    // 获取私人FM
+    getPersonalFM() {
+      personal_fmApi().then(data => {});
+    },
+    // 获取推荐电台
+    getDJprogram() {
+      djprogramApi().then(data => {
+        this.DJprogramList = data.result;
       });
     }
   },
@@ -106,13 +136,12 @@ export default {
   overflow: hidden;
   border-radius: 5px;
   height: 200px;
-  .yd-slider{
+  .yd-slider {
     height: 100%;
-    img{
-    height: 100%;
+    img {
+      height: 100%;
+    }
   }
-  }
-  
 }
 .shortcut {
   display: flex;
@@ -135,7 +164,7 @@ export default {
 }
 .recommendSongList {
   > .head {
-    >.tit{
+    > .tit {
       padding: 0px 5px;
       font-size: 20px;
       height: 60px;

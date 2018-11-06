@@ -1,17 +1,20 @@
 import http from '@/http';
-// 
-const baseURL = 'http://118.126.106.247:9001';
 
 const api = {
   // 手机登录
-  cellphoneApi: `${baseURL}/login/cellphone`,
+  cellphoneApi: "/login/cellphone",
   // banner
-  bannerApi: `${baseURL}/banner`,
+  bannerApi: "/banner",
 
   // 推荐歌单
-  personalizedApi: `${baseURL}/personalized`,
+  personalizedApi: "/personalized",
   // 推荐新音乐
-  newsongApi:`${baseURL}/personalized/newsong`
+  newsongApi: "/personalized/newsong",
+  // 私人fm
+  personal_fmApi: "/personal_fm",
+
+  // 推荐电台
+  djprogramApi:"/personalized/djprogram"
 }
 
 // 通过手机登录
@@ -23,6 +26,15 @@ export const bannerApi = param => http.post(api.bannerApi, param);
 export const personalizedApi = param => http.post(api.personalizedApi, param);
 // 推荐新音乐
 export const newsongApi = param => http.post(api.newsongApi, param);
+// 私人fm
+export const personal_fmApi = param => http.post(api.personal_fmApi, param);
+
+// 推荐电台
+export const djprogramApi = param => http.post(api.djprogramApi, param);
+
+
+
+
 
 
 

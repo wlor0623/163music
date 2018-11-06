@@ -1,32 +1,15 @@
 import axios from 'axios';
 axios.defaults.withCredentials = true;
+axios.defaults.baseURL="http://118.126.106.247:9001"
 let cancel = {};
 let pending = [];
 let CancelToken = axios.CancelToken;
-let removePending = (config, f) => {
-  let flagUrl = config.url + '&' + config.method
-  if (pending.indexOf(flagUrl) !== -1) {
-    if (f) {
-      f() // 执行取消操作
-    } else {
-      pending.splice(pending.indexOf(flagUrl), 1) // 把这条记录从数组中移除
-    }
-  } else {
-    if (f) {
-      pending.push(flagUrl)
-    }
-  }
-}
 
 axios.defaults.withCredentials = true;
 // http request 拦截器
 axios.interceptors.request.use(
   config => {
-    if (config.method) {
-      config.cancelToken = new CancelToken((c) => {
-        removePending(config, c)
-      })
-    }
+   
     return config
   },
   err => {
@@ -34,13 +17,9 @@ axios.interceptors.request.use(
   })
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
-  if (response.config.method === 'post') {
-    removePending(response.config)
-  }
+ 
   return response
 }, err => {
-  console.log(err);
-  
   if (err && err.response) {
     switch (err.response.status) {
       case 400:
