@@ -1,7 +1,5 @@
 # 163music
-<<<<<<< HEAD
 基于网易云音乐api接口的web页面
-=======
 
 ## Project setup
 ```
@@ -30,4 +28,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> 提交
