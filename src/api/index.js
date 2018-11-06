@@ -9,7 +9,9 @@ const api = {
   bannerApi: `${baseURL}/banner`,
 
   // 推荐歌单
-  personalizedApi: `${baseURL}/personalized`
+  personalizedApi: `${baseURL}/personalized`,
+  // 推荐新音乐
+  newsongApi:`${baseURL}/personalized/newsong`
 }
 
 // 通过手机登录
@@ -19,6 +21,10 @@ export const bannerApi = param => http.post(api.bannerApi, param);
 
 // 推荐歌单
 export const personalizedApi = param => http.post(api.personalizedApi, param);
+// 推荐新音乐
+export const newsongApi = param => http.post(api.newsongApi, param);
+
+
 
 
 

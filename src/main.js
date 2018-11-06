@@ -13,6 +13,11 @@ Vue.use(YDUI);
 import "@/asstes/css/base.css"
 Vue.config.productionTip = false
 
+
+import VueLazyload from 'vue-lazyload'  //引入这个懒加载插件
+
+Vue.use(VueLazyload)
+
 new Vue({
   router,
   store,
