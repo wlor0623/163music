@@ -1,18 +1,13 @@
 <template>
   <section id='find'>
+    <searchBar></searchBar>
     <!-- banner -->
     <div class="banner">
-
       <yd-slider autoplay="3000">
-
         <yd-slider-item v-for="(item,index) in bannerList" :key="index">
-
           <img v-lazy="item.imageUrl" alt="">
-
         </yd-slider-item>
-
       </yd-slider>
-
     </div>
     <!-- 快捷 -->
     <div class="shortcut">
@@ -37,25 +32,29 @@
     <!-- 推荐歌单 -->
     <div class="recommendSongList">
       <div class="head">
-        <h3 class="tit">推荐歌单</h3>
+        <h3 class="tit">推荐歌单 <i class="icon iconfont icon-gengduo"></i></h3>
       </div>
       <div class="body">
         <div class="item" v-for="(item,index) in recommendSongList" :key="index">
-          <i class="playCount">{{item.playCount}}</i>
-          <img class="pic" v-lazy="item.picUrl" alt="">
-          <p>{{item.name}}</p>
+          <router-link :to="{path:'/playlistInfo',query:{id:item.id}}">
+            <i class="playCount">{{item.playCount}}</i>
+            <img class="pic" v-lazy="item.picUrl" alt="">
+            <p class="tit">{{item.name}}</p>
+          </router-link>
         </div>
       </div>
     </div>
 
     <div class="recommendSongList">
       <div class="head">
-        <h3 class="tit">推荐电台</h3>
+        <h3 class="tit">推荐电台 <i class="icon iconfont icon-gengduo"></i></h3>
       </div>
       <div class="body">
         <div class="item" v-for="(item,index) in DJprogramList" :key="index">
-          <img class="pic" v-lazy="item.picUrl" alt="">
-          <p>{{item.name}}</p>
+          <router-link :to="{path:'/playlistInfo',query:{id:item.id}}">
+            <img class="pic" v-lazy="item.picUrl" alt="">
+            <p class="tit">{{item.name}}</p>
+          </router-link>
         </div>
       </div>
     </div>
@@ -69,7 +68,7 @@ import {
   personal_fmApi,
   djprogramApi
 } from "@/api";
-
+import searchBar from "@/components/searchBar";
 export default {
   name: "",
 
@@ -128,7 +127,7 @@ export default {
     }
   },
   //组件
-  components: {}
+  components: { searchBar }
 };
 </script>
 <style lang='less' scoped>
@@ -145,6 +144,8 @@ export default {
 }
 .shortcut {
   display: flex;
+  padding: 20px 0px;
+  border-bottom: 1px solid #eee;
   > .item {
     flex: 1;
     text-align: center;
@@ -163,34 +164,47 @@ export default {
   }
 }
 .recommendSongList {
+  padding: 5px;
   > .head {
     > .tit {
       padding: 0px 5px;
       font-size: 20px;
       height: 60px;
+      font-weight: 700;
       line-height: 60px;
-      font-weight: 420;
     }
   }
   > .body {
     display: flex;
     flex-wrap: wrap;
     > .item {
-      flex: 0 0 33.3333%;
-      padding: 1px;
+      flex: 0 0 33.33%;
+      padding: 2px;
       position: relative;
-      > .pic {
-        width: 100%;
-        display: block;
-        border-radius: 5px;
-        overflow: hidden;
-      }
-      > .playCount {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 5px;
-        color: #f5f5f5;
+      margin-bottom: 20px;
+      > a {
+        > .pic {
+          width: 100%;
+          display: block;
+          border-radius: 5px;
+          overflow: hidden;
+        }
+        > .tit {
+          font-size: 14px;
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+        > .playCount {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 5px;
+          color: #f5f5f5;
+        }
       }
     }
   }

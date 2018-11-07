@@ -16,6 +16,11 @@ export default new Router({
       path: '/find',
       name: 'find',
       component: () => import('./views/find/index.vue')
+    },
+    {
+      path: '/playlistInfo',
+      name: 'playlistInfo',
+      component: () => import('./views/playlistInfo/index.vue')
     }
   ]
 })

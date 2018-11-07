@@ -9,7 +9,7 @@
   position: relative;
   margin: 0px auto;
   max-width: 750px;
-  background-color: #eee;
+  background-color: #fcfcfc;
   width: 100%;
   height: 100%;
 }
