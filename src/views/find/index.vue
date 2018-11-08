@@ -1,5 +1,6 @@
 <template>
   <section id='find'>
+    <div id="bg1"></div>
     <searchBar></searchBar>
     <!-- banner -->
     <div class="banner">
@@ -44,10 +45,11 @@
         </div>
       </div>
     </div>
-
+   
+    <!--电台 -->
     <div class="recommendSongList">
       <div class="head">
-        <h3 class="tit">推荐电台 <i class="icon iconfont icon-gengduo"></i></h3>
+        <h3 class="tit">主播电台 <i class="icon iconfont icon-gengduo"></i></h3>
       </div>
       <div class="body">
         <div class="item" v-for="(item,index) in DJprogramList" :key="index">
@@ -64,9 +66,8 @@
 import {
   bannerApi,
   personalizedApi,
-  newsongApi,
   personal_fmApi,
-  djprogramApi
+  djprogramApi,
 } from "@/api";
 import searchBar from "@/components/searchBar";
 export default {
@@ -78,8 +79,10 @@ export default {
       bannerList: [],
       // 推荐歌单
       recommendSongList: [],
+
       // 电台
-      DJprogramList: []
+      DJprogramList: [],
+
     };
   },
 
@@ -88,7 +91,6 @@ export default {
   created() {
     this.getBanner();
     this.getPersonalized();
-    this.getNewSong();
     this.getDJprogram();
   },
   //计算
@@ -109,12 +111,7 @@ export default {
         this.recommendSongList = data.result.slice(0, 6);
       });
     },
-    // 获取新歌
-    getNewSong() {
-      newsongApi().then(data => {
-        // this.newSongList=data.
-      });
-    },
+  
     // 获取私人FM
     getPersonalFM() {
       personal_fmApi().then(data => {});
@@ -124,19 +121,31 @@ export default {
       djprogramApi().then(data => {
         this.DJprogramList = data.result;
       });
-    }
+    },
   },
   //组件
   components: { searchBar }
 };
 </script>
 <style lang='less' scoped>
+#find{
+  position: relative;
+  >#bg1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 210px;
+    width: 100%;
+  background: #ca4c3f;
+  }
+}
 .banner {
-  overflow: hidden;
-  border-radius: 5px;
+  padding: 5px;
   height: 200px;
   .yd-slider {
     height: 100%;
+      overflow: hidden;
+  border-radius: 5px;
     img {
       height: 100%;
     }

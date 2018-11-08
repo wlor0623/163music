@@ -1,6 +1,8 @@
 <template>
   <section id='searchBar'>
+    <span class="left-icon"><i class="icon iconfont icon-music"></i></span>
     <input class="search-input" placeholder="qingshu" type="text">
+    <span class="right-icon"><i class="icon iconfont icon-fsux_tubiao_zhuzhuangtu"> </i></span>
   </section>
 </template>
 <script>
@@ -25,10 +27,36 @@ export default {
 <style lang='less' scoped>
 #searchBar {
   position: relative;
-  padding: 5px 40px;
+  padding: 5px 50px;
+  >.left-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    >.icon{
+      font-size: 30px;
+      color: #f5f5f5;
+    }
+  }
+  >.right-icon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    >.icon{
+      font-size: 30px;
+      color: #f5f5f5;
+    }
+  }
   .search-input {
-    // background-color: rgba(255,255,255,.5);
-    background-color: #eee;
+    background-color: rgba(255,255,255,.3);
+    color: #eeeeee;
     border: none;
     width: 100%;
     position: relative;

@@ -14,9 +14,10 @@ const api = {
   personal_fmApi: "/personal_fm",
 
   // 推荐电台
-  djprogramApi:"/personalized/djprogram",
-// 歌单详情
-playlistDetailApi:"/playlist/detail"
+  djprogramApi: "/personalized/djprogram",
+  // 歌单详情
+  playlistDetailApi: "/playlist/detail",
+
 }
 
 // 通过手机登录
@@ -35,7 +36,6 @@ export const personal_fmApi = param => http.post(api.personal_fmApi, param);
 export const djprogramApi = param => http.post(api.djprogramApi, param);
 // 歌单详情
 export const playlistDetailApi = param => http.get(api.playlistDetailApi, param);
-
 
 
 
